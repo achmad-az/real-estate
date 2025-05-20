@@ -1,0 +1,89 @@
+@layer base {
+    :root {
+
+        /* Color palette */
+        --bg-overlay-color: rgba(227,233,229, 0.85);
+        --color-chiffon-light: #fffdfb;
+        --color-chiffon-light-hover: #fffcf8;
+        --color-chiffon-light-active: #fff9f1;
+
+        /* Purple Shades */
+        --color-purple-99: #fbfafe;
+        --color-purple-97: #f4f0fe;
+        --color-purple-95: #ede6fd;
+        --color-purple-90: #dbcefc;
+        --color-purple-75: #a584f9;
+        --color-purple-70: #936cf8;
+        --color-purple-65: #8153f7;
+        --color-purple-60: #6f3bf6;
+
+        /* White Shades */
+        --color-white-90: #e3e3e7;
+        --color-white-95: #f1f1f3;
+        --color-white-97: #f7f7f8;
+        --color-white-99: #fcfcfc;
+
+        /* Grey Shades */
+        --color-grey-08: #141414;
+        --color-grey-10: #1a1a1a;
+        --color-grey-15: #262626;
+        --color-grey-20: #333333;
+        --color-grey-30: #4d4d4d;
+        --color-grey-40: #666666;
+        --color-grey-50: #808080;
+        --color-grey-60: #999999;
+
+        /* General Button */
+        --btn-height: 40px;
+        --btn-min-w: 142px;
+
+        /* Default colors (Light theme) */
+        
+        /* general */
+        --theme-bg-color: var(--bg-overlay-color); /* for background color */
+        --theme-text-color: var(--color-pine); /* for text color (menu, text newsletter form on footer) */
+        --theme-text-prm-color: var(--color-pine); /* for text color (heading) */
+        --theme-text-alt-color: var(--color-grey-700); /* for text color (alternative text such as category, date or heading alternative) */
+        --theme-text-alt-2-color: var(--color-grey-700); /* for text color (alternative text such as category, date or heading alternative) */
+        --theme-text-alt-3-color: var(--color-celadon-green); /* for text color (alternative text such as category, date or heading alternative) */
+        --theme-text-content-color: var(--color-grey-900); /* for text color (text content description, article content) */
+        --theme-text-scd-color: var(--color-sacramento); /* for text color secondary */
+        --theme-text-thd-color: var(--color-sacramento); /* for text color third */
+        --theme-text-fth-color: var(--color-sacramento); /* for text color fourth */
+        --theme-text-fifth-color: var(--color-kelly-green); /* for text color fifth */
+        --theme-img-color: var(--color-dark-brown);
+        --theme-img-vid-color: var(--color-sage);
+        --theme-divider-color: var(--color-lime-green);
+        --theme-text-tab-vid-color: var(--color-grey-900);
+        --theme-text-tab-2-vid-color: var(--color-grey-700);
+        --theme-text-share-color: var(--color-grey-900);
+        --theme-text-cat-color: var(--color-grey-700);
+        --theme-scrollbar-color: var(--color-grey-300);
+        --theme-bg-scrollbar-color: var(--color-chiffon-light-active);
+        --theme-text-link-color: var(--color-pine);
+        --swiper-theme-color: var(--color-grey-700);
+
+        /* header and footer */
+        --theme-header-bg-color: var(--color-chiffon);
+        --theme-header-divider-color: var(--color-sage);
+        --theme-header-search-border-color: var(--color-sage);
+
+        --theme-footer-bg-color: var(--color-chiffon-light-active);
+        --theme-footer-divider-color: var(--color-sage);
+        --theme-footer-text-color: var(--color-sacramento);
+
+        /* subscribe box */
+        --theme-bg-subs-box-color: var(--color-sacramento);
+        --theme-text-subs-box-color: var(--color-chiffon);
+    }
+
+    a:hover {
+        opacity: 60%;
+        transition: opacity 0.2s ease-in-out;
+        -webkit-transition: opacity 0.2s ease-in-out;
+        -moz-transition: opacity 0.2s ease-in-out;
+        -ms-transition: opacity 0.2s ease-in-out;
+        -o-transition: opacity 0.2s ease-in-out;
+    }
+
+}

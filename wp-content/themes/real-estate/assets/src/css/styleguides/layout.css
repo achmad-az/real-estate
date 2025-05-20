@@ -1,0 +1,76 @@
+/* Container for layout content */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container-content {
+    @apply container mx-auto px-[16px] md:px-[32px] lg:px-[72px];
+}
+
+.wp-block-columns {
+    .wp-block-heading, p {
+        @apply max-w-3xl mx-auto;
+    }
+}
+
+.wp-block-media-text {
+    @apply w-full max-w-4xl mx-auto gap-x-10 mt-24 pb-20 border-b border-[--theme-color-border];
+}
+
+.wp-block-media-text:last-child {
+    @apply border-none pb-0;
+}
+
+.wp-block-media-text__media {
+    img {
+        @apply aspect-[3/2] object-cover;
+    }
+}
+
+.wp-block-media-text__content {
+    @apply !p-[0.5%];
+}
+
+.wp-block-cover__inner-container {
+    h1, h2, h3, h4, h5, h6 {
+        @apply mb-0;
+    }
+}
+
+.has-chiffon-light-active-background-color {
+    background-color: var(--color-chiffon-light-active);
+    opacity: 0.60;
+}
+
+.wp-block-list {
+    @apply list-disc list-inside space-y-2 text-base text-gray-700 max-w-3xl mx-auto;
+}
+
+ul.wp-block-list {
+    @apply text-base list-disc list-inside mb-6;
+}
+
+.wp-block-list ol {
+    @apply text-base list-decimal list-inside !mt-5;
+}
+
+.wp-block-list li {
+    @apply text-base leading-relaxed !mt-4;
+    position: relative; /* Pastikan elemen li memiliki posisi relatif */
+    padding-left: 1.5rem; /* Tambahkan padding untuk marker */
+    text-indent: -1.5rem; /* Buat baris kedua dan seterusnya tidak sejajar dengan marker */
+}
+
+.wp-block-list li::marker {
+    left: 0; /* Pastikan marker tetap di posisi awal */
+}
+
+/* Responsif untuk daftar */
+.wp-block-list {
+    @apply md:text-lg md:space-y-6 lg:text-xl lg:space-y-8;
+}
+
+img.menu-logo {
+    @apply h-8 w-auto;
+}

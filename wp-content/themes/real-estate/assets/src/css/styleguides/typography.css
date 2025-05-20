@@ -1,0 +1,138 @@
+/* Typography */
+
+body,
+p {
+    @apply typography-body-l font-primary-regular;
+    color: #2f2e2e;
+}
+
+p {
+    @apply leading-[1.8] mb-6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #605e5e
+   
+}
+
+/* Defined Typography */
+
+
+.typography-display {
+    @apply text-display leading-display;
+}
+
+h1 {
+    @apply font-normal text-h4 leading-h4 mb-5 md:text-h1 md:leading-h1 md:mb-8;
+}
+
+h2 {
+    @apply font-normal text-h3 leading-h3 mb-5 md:text-h2 md:leading-h2 md:mb-8;
+}
+
+h3 {
+    @apply font-normal text-h4 leading-h4 mb-4 md:text-h3 md:leading-h3 md:mb-6;
+}
+
+h4 {
+    @apply font-normal text-h5 leading-h5 mb-4 md:text-h4 md:leading-h4 md:mb-6;
+}
+
+h5 {
+    @apply font-medium text-h5 leading-h5 mb-3 md:mb-4;
+}
+
+h6 {
+    @apply font-normal text-h6 leading-h6 mb-3 md:mb-4;
+}
+
+.typography-body-l {
+    @apply font-normal leading-[25.2px] text-[18px];
+}
+
+.typography-body-m {
+    @apply font-normal leading-[28.8px] text-[16px];
+}
+
+.typography-body-s {
+    @apply font-normal leading-[25.92px] text-[14.4px];
+}
+
+.typography-button {
+    @apply font-medium text-button leading-button uppercase;
+}
+
+/* Editor content */
+
+.entry-content,
+.block-editor-block-list__layout {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply mb-[10px];
+    }
+
+    p,
+    ul,
+    ol {
+        a {
+            @apply text-[--theme-text-link-color] underline;
+
+            &:hover {
+                @apply no-underline;
+            }
+        }
+
+        @apply typography-body-l mb-3 text-[--theme-text-content-color];
+    }
+
+    ul:not(.block-editor-block-variation-picker__variations) {
+        li {
+            @apply list-disc list-inside;
+        }
+    }
+
+    ol {
+        li {
+            @apply list-decimal list-inside;
+        }
+    }
+}
+
+.privacy-policy {
+    .entry-content,
+    .block-editor-block-list__layout {
+        p.updated-date {
+            @apply text-[16px] pb-[90px];
+        }
+        ul {
+            li {
+                @apply list-disc list-outside ml-[14px];
+            }
+        }
+    }
+}
+
+.block-content p {
+    @apply max-w-2xl mx-auto text-white;
+}
+
+.block-content .wp-block-columns p {
+    @apply text-[#2f2e2e];
+}
+
+.choice-of-programs p, .other-offering p {
+    @apply text-[#2f2e2e];
+}
+
+.choice-of-programs-2 p {
+    @apply mx-0 text-[#2f2e2e]
+}

@@ -1,0 +1,64 @@
+/* Theme style */
+
+body {
+    @apply bg-[--color-grey-08];
+}
+
+    .input-dark {
+        @apply placeholder-grey-300 
+        text-grey-100 
+        bg-grey-900;
+    }
+
+    .input-light {
+        @apply placeholder-grey-300 
+        text-grey-100 
+        bg-grey-900;
+    }
+
+    footer {
+        --theme-text-color: var(--color-chiffon);
+    }
+
+.home {
+    .theme-dark {
+        /* general */
+        --theme-bg-color: var(--color-pine);
+        --theme-bg-content-color: var(--color-sacramento);
+        /* header and footer */
+        --theme-header-bg-color: var(--color-pine);
+    }
+}
+
+
+.wp-block-columns {
+    @apply lg:py-20 py-8 px-4;
+    background-color: var(--bg-overlay-color);
+    margin-bottom: 0;
+}
+
+.wp-block-columns .wp-block-columns {
+    background-color: transparent;
+}
+
+.wp-block-image.aligncenter {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.has-text-align-center {
+    text-align: center;
+}
+.has-text-align-left {
+    text-align: left;
+}
+.has-text-align-right {
+    text-align: right;
+}
+.has-text-align-justify {
+    text-align: justify;
+}
+
+footer {
+    background-color: var(--bg-overlay-color); /* Gunakan variabel CSS di sini */
+}
