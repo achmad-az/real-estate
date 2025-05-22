@@ -11,6 +11,7 @@ $gns_includes = [
 	'class-hero-block.php',
 	'class-cta-block.php',
 	'class-value-block.php',
+	'class-property-value-block.php',
 	'class-hero-services-block.php',
 	'class-team-block.php',
 	'class-blog-block.php',

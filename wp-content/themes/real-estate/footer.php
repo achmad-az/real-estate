@@ -5,14 +5,17 @@
         <?php do_action( 'rela_estate_content_after' );
         
             $main_logo_image = carbon_get_theme_option('main_logo_image');
-            $footer_logo_image = carbon_get_theme_option('footer_logo_image');
-            $footer_text = carbon_get_theme_option('footer_text');
-            $copy_text = carbon_get_theme_option('copy_text');
+            $copyright_text = carbon_get_theme_option('copyright_text');
+            $tos_link = carbon_get_theme_option('tos_link');
+            $facebook = carbon_get_theme_option('facebook');
+            $linkedin = carbon_get_theme_option('linkedin');
+            $twitter = carbon_get_theme_option('twitter');
+            $youtube = carbon_get_theme_option('youtube');
         ?>
 
         <footer class="bg-[--color-grey-08]" aria-labelledby="footer-heading">
             <h2 id="footer-heading" class="sr-only">Footer</h2>
-            <div class="mx-auto max-w-7xl px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
+            <div class="container px-6 pb-8 pt-20 sm:pt-24 lg:px-8 lg:pt-32">
                 <div class="xl:grid xl:grid-cols-3 xl:gap-16">
                     <div class="footer-newsletter space-y-4">
                         <a href="<?php echo esc_url(home_url('/')); ?>" class="-m-1.5 p-1.5">
@@ -32,7 +35,7 @@
                         <form class="mt-6 max-w-md">
                             <?php wp_nonce_field('newsletter_signup_nonce', 'newsletter_nonce'); ?>
                             
-                            <div class="relative w-[305px] border border-[#999999] rounded-lg">
+                            <div class="relative w-[305px] outline outline-1 outline-offset-[-1px] outline-neutral-800 rounded-lg">
                                 <div class="w-[full] px-5 py-3.5 bg-[--color-grey-08] rounded-lg outline outline-1 outline-offset-[-1px] outline-[--color-grey-08] flex justify-start items-center gap-1.5">
                                     <div class="w-5 h-5 relative overflow-hidden">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,160 +58,81 @@
                         <div class="newsletter-notification mt-4"></div>
                     </div>
                     <div class="footer-menu xl:col-span-2 mt-12 xl:mt-0">
-                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                            <!-- First column -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            <!-- Footer Widget Area 1 -->
                             <div class="lg:col-span-1">
-                                <h3 class="text-sm font-semibold leading-6 text-white">Solutions</h3>
-                                <ul role="list" class="mt-6 space-y-4">
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Marketing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Analytics</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Commerce</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Insights</a>
-                                    </li>
-                                </ul>
+                                <?php if (is_active_sidebar('footer-1')) : ?>
+                                    <?php dynamic_sidebar('footer-1'); ?>
+                                <?php endif; ?>
                             </div>
                             
-                            <!-- Second column -->
+                            <!-- Footer Widget Area 2 -->
                             <div class="lg:col-span-1">
-                                <h3 class="text-sm font-semibold leading-6 text-white">Support</h3>
-                                <ul role="list" class="mt-6 space-y-4">
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Pricing</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Documentation</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Guides</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">API
-                                            Status</a>
-                                    </li>
-                                </ul>
+                                <?php if (is_active_sidebar('footer-2')) : ?>
+                                    <?php dynamic_sidebar('footer-2'); ?>
+                                <?php endif; ?>
                             </div>
                             
-                            <!-- Third column -->
+                            <!-- Footer Widget Area 3 -->
                             <div class="lg:col-span-1">
-                                <h3 class="text-sm font-semibold leading-6 text-white">Resources</h3>
-                                <ul role="list" class="mt-6 space-y-4">
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Help Center</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Knowledge Base</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Tutorials</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">
-                                            Community</a>
-                                    </li>
-                                </ul>
+                                <?php if (is_active_sidebar('footer-3')) : ?>
+                                    <?php dynamic_sidebar('footer-3'); ?>
+                                <?php endif; ?>
                             </div>
-                            
-                            <!-- Fourth column -->
+
+                            <!-- Footer Widget Area 4 -->
                             <div class="lg:col-span-1">
-                                <h3 class="text-sm font-semibold leading-6 text-white">Company</h3>
-                                <ul role="list" class="mt-6 space-y-4">
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Blog</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Jobs</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Press</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="text-sm leading-6 text-gray-300 hover:text-white">Partners</a>
-                                    </li>
-                                </ul>
+                                <?php if (is_active_sidebar('footer-4')) : ?>
+                                    <?php dynamic_sidebar('footer-4'); ?>
+                                <?php endif; ?>
                             </div>
-                            
-                            <!-- Fifth column -->
+
+                            <!-- Footer Widget Area 5 -->
                             <div class="lg:col-span-1">
-                                <h3 class="text-sm font-semibold leading-6 text-white">Legal</h3>
-                                <ul role="list" class="mt-6 space-y-4">
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Claim</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Privacy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="text-sm leading-6 text-gray-300 hover:text-white">Terms</a>
-                                    </li>
-                                </ul>
+                                <?php if (is_active_sidebar('footer-5')) : ?>
+                                    <?php dynamic_sidebar('footer-5'); ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
-                    <div class="flex space-x-6 md:order-2">
+                <div class="mt-16 border-t border-white/10 pt-8 content-center sm:mt-20 md:flex md:items-center md:justify-between lg:mt-20">
+                    <div class="flex space-x-6 md:order-2 justify-center lg:justify-normal">
                         <a href="#" class="text-gray-500 hover:text-gray-400">
                             <span class="sr-only">Facebook</span>
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                                    clip-rule="evenodd"></path>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.1203 3.32002H15.0003V0.14003C14.0901 0.0453769 13.1755 -0.00135428 12.2603 2.98641e-05C9.54034 2.98641e-05 7.68035 1.66003 7.68035 4.70002V7.32002H4.61035V10.88H7.68035V20H11.3603V10.88H14.4203L14.8803 7.32002H11.3603V5.05002C11.3603 4.00002 11.6403 3.32002 13.1203 3.32002Z" fill="white"/>
                             </svg>
                         </a>
                         <a href="#" class="text-gray-500 hover:text-gray-400">
-                            <span class="sr-only">Instagram</span>
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                                    clip-rule="evenodd"></path>
+                            <span class="sr-only">LinkedIn</span>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.0585 1.66662H2.9418C2.78311 1.66442 2.62555 1.69349 2.4781 1.75219C2.33066 1.81089 2.19622 1.89805 2.08246 2.00871C1.96871 2.11937 1.87786 2.25136 1.81512 2.39713C1.75238 2.5429 1.71897 2.6996 1.7168 2.85829V17.1416C1.71897 17.3003 1.75238 17.457 1.81512 17.6028C1.87786 17.7486 1.96871 17.8805 2.08246 17.9912C2.19622 18.1019 2.33066 18.189 2.4781 18.2477C2.62555 18.3064 2.78311 18.3355 2.9418 18.3333H17.0585C17.2171 18.3355 17.3747 18.3064 17.5222 18.2477C17.6696 18.189 17.804 18.1019 17.9178 17.9912C18.0316 17.8805 18.1224 17.7486 18.1851 17.6028C18.2479 17.457 18.2813 17.3003 18.2835 17.1416V2.85829C18.2813 2.6996 18.2479 2.5429 18.1851 2.39713C18.1224 2.25136 18.0316 2.11937 17.9178 2.00871C17.804 1.89805 17.6696 1.81089 17.5222 1.75219C17.3747 1.69349 17.2171 1.66442 17.0585 1.66662ZM6.7418 15.6166H4.2418V8.11662H6.7418V15.6166ZM5.4918 7.06662C5.14702 7.06662 4.81636 6.92966 4.57256 6.68586C4.32876 6.44206 4.1918 6.1114 4.1918 5.76662C4.1918 5.42184 4.32876 5.09118 4.57256 4.84738C4.81636 4.60358 5.14702 4.46662 5.4918 4.46662C5.67488 4.44586 5.86028 4.464 6.03586 4.51986C6.21144 4.57571 6.37325 4.66803 6.51068 4.79076C6.64811 4.91348 6.75807 5.06385 6.83336 5.23202C6.90864 5.40019 6.94756 5.58237 6.94756 5.76662C6.94756 5.95087 6.90864 6.13305 6.83336 6.30122C6.75807 6.46939 6.64811 6.61976 6.51068 6.74249C6.37325 6.86521 6.21144 6.95753 6.03586 7.01338C5.86028 7.06924 5.67488 7.08738 5.4918 7.06662ZM15.7585 15.6166H13.2585V11.5916C13.2585 10.5833 12.9001 9.92495 11.9918 9.92495C11.7107 9.92701 11.437 10.0152 11.2075 10.1776C10.978 10.34 10.8039 10.5688 10.7085 10.8333C10.6433 11.0292 10.615 11.2354 10.6251 11.4416V15.6083H8.12513C8.12513 15.6083 8.12513 8.79162 8.12513 8.10829H10.6251V9.16662C10.8522 8.77254 11.1826 8.44789 11.5805 8.22762C11.9784 8.00736 12.4289 7.89983 12.8835 7.91662C14.5501 7.91662 15.7585 8.99162 15.7585 11.3V15.6166Z" fill="white"/>
                             </svg>
+
                         </a>
                         <a href="#" class="text-gray-500 hover:text-gray-400">
                             <span class="sr-only">Twitter</span>
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84">
-                                </path>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.3337 4.83326C17.7073 5.10501 17.0448 5.28465 16.367 5.3666C17.0821 4.93936 17.6181 4.26725 17.8753 3.47493C17.2033 3.87498 16.4676 4.15684 15.7003 4.30826C15.1874 3.75207 14.5045 3.38184 13.7585 3.25564C13.0125 3.12944 12.2458 3.2544 11.5785 3.61092C10.9112 3.96745 10.3811 4.53537 10.0714 5.22563C9.76162 5.91588 9.68974 6.68942 9.86699 7.42493C8.50818 7.3562 7.17903 7.00239 5.96587 6.38648C4.75272 5.77057 3.6827 4.90634 2.82533 3.84993C2.52461 4.37507 2.36659 4.96978 2.36699 5.57493C2.36593 6.13692 2.50384 6.69044 2.76845 7.18623C3.03307 7.68202 3.41617 8.10469 3.88366 8.4166C3.34031 8.40181 2.80856 8.25601 2.33366 7.9916V8.03326C2.33773 8.82067 2.61365 9.58251 3.11475 10.1899C3.61585 10.7973 4.31137 11.213 5.08366 11.3666C4.78637 11.4571 4.47772 11.5048 4.16699 11.5083C3.9519 11.5058 3.73734 11.4862 3.52533 11.4499C3.74525 12.1273 4.17084 12.7192 4.74289 13.1434C5.31493 13.5676 6.00497 13.8029 6.71699 13.8166C5.51466 14.7627 4.03023 15.279 2.50033 15.2833C2.22177 15.2842 1.94344 15.2675 1.66699 15.2333C3.22902 16.2418 5.04934 16.7772 6.90866 16.7749C8.19174 16.7883 9.4646 16.5458 10.6529 16.0617C11.8412 15.5775 12.9212 14.8615 13.8297 13.9553C14.7381 13.0492 15.457 11.9711 15.9441 10.784C16.4313 9.59695 16.677 8.3247 16.667 7.0416C16.667 6.89993 16.667 6.74993 16.667 6.59993C17.3209 6.11227 17.8849 5.51445 18.3337 4.83326Z" fill="white"/>
                             </svg>
-                        </a>
-                        <a href="#" class="text-gray-500 hover:text-gray-400">
-                            <span class="sr-only">GitHub</span>
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
+
                         </a>
                         <a href="#" class="text-gray-500 hover:text-gray-400">
                             <span class="sr-only">YouTube</span>
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path fill-rule="evenodd"
-                                    d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-                                    clip-rule="evenodd"></path>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.1669 8.09165C19.2081 6.89886 18.9472 5.715 18.4085 4.64999C18.043 4.21299 17.5358 3.91808 16.9752 3.81665C14.6565 3.60626 12.3281 3.52002 10.0002 3.55832C7.68072 3.51829 5.36078 3.60174 3.05019 3.80832C2.59337 3.89142 2.17062 4.10569 1.83352 4.42499C1.08352 5.11665 1.00019 6.29999 0.916852 7.29999C0.795945 9.09796 0.795945 10.902 0.916852 12.7C0.94096 13.2628 1.02476 13.8215 1.16685 14.3667C1.26733 14.7875 1.47062 15.1769 1.75852 15.5C2.09791 15.8362 2.53051 16.0627 3.00019 16.15C4.79678 16.3718 6.60703 16.4637 8.41685 16.425C11.3335 16.4667 13.8919 16.425 16.9169 16.1917C17.3981 16.1097 17.8428 15.8829 18.1919 15.5417C18.4252 15.3082 18.5994 15.0226 18.7002 14.7083C18.9982 13.7938 19.1446 12.8367 19.1335 11.875C19.1669 11.4083 19.1669 8.59165 19.1669 8.09165ZM8.11685 12.375V7.21665L13.0502 9.80832C11.6669 10.575 9.84185 11.4417 8.11685 12.375Z" fill="white"/>
                             </svg>
+
                         </a>
 
                     </div>
-                    <p class="mt-8 text-xs leading-5 text-gray-400 md:order-1 md:mt-0">© 2020 Your Company, Inc. All
-                        rights reserved.</p>
+                    <div class="flex justify-center items-center lg:items-start lg:justify-normal lg:flex-row flex-col mt-8 text-sm font-primary-medium leading-normal md:order-1 md:mt-0">
+                        <?php echo esc_html($copyright_text); ?>
+                        <?php if ($tos_link) : ?>
+                            <a href="<?php echo esc_url(get_permalink($tos_link)); ?>" class="ml-5">Terms & Conditions</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </footer>
