@@ -1,10 +1,8 @@
-
-
 /* Hero styles */
 
 .hero-description p {
     
-    @apply mt-6 max-w-2xl m-auto text-sm leading-normal text-gray-300;
+    @apply mt-6 max-w-2xl m-auto text-sm leading-normal;
 }
 
 /* Contact Form styles */
@@ -117,4 +115,15 @@ select {
 
 .wc-block-components-order-summary-item__total-price span.wc-block-formatted-money-amount {
    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-menu .widget {
+        margin-bottom: 1rem;
+    }
+    
+    .footer-menu .widget_nav_menu ul {
+        margin-top: 1rem;
+    }
 }

@@ -15,12 +15,24 @@ if (!function_exists('rela_estate_enqueue_scripts')) {
 
         $css_version = $theme->get( 'Version' ) . '.' . filemtime( get_template_directory() . '/assets/dist/css/app.css' );
         $js_version = $theme->get( 'Version' ) . '.' . filemtime( get_template_directory() . '/assets/dist/js/app.js' );
+        
         wp_enqueue_style( 'real-estate', rela_estate_asset( 'css/app.css' ), array(), $css_version );
         wp_enqueue_script( 'real-estate', rela_estate_asset( 'js/app.js' ), array(), $js_version, array(
             'in_footer' => true,
             'strategy'  => 'defer',
         ) );
+        
+        // Localize the script with new data
         wp_localize_script( 'real-estate', 'gns', rela_estate_js_args() );
+        
+        // Enqueue newsletter script
+        wp_enqueue_script( 'real-estate-newsletter', rela_estate_asset( 'js/newsletter.js' ), array('real-estate'), $js_version, array(
+            'in_footer' => true,
+            'strategy'  => 'defer',
+        ) );
+        
+        // Also localize the newsletter script to ensure it has access to gns
+        wp_localize_script( 'real-estate-newsletter', 'gns', rela_estate_js_args() );
     }
     add_action( 'wp_enqueue_scripts', 'rela_estate_enqueue_scripts' );
 }
@@ -229,25 +241,3 @@ function rela_estate_enqueue_styles() {
     wp_enqueue_style('fonts', get_template_directory_uri() . '/assets/src/css/styleguides/fonts.css', [], null);
 }
 add_action('wp_enqueue_scripts', 'rela_estate_enqueue_styles');
-
-
-function rela_estate_fonts() {
-	return [
-		[
-			'family' => 'Josefin Light',
-			'src' => rela_estate_asset( 'fonts/JosefinSans-Light.ttf', true ),
-			'format' => 'truetype',
-			'weight' => 'normal',
-			'style' => 'sans-serif',
-			'display' => 'swap',
-		],
-		[
-			'family' => 'Didot Italic',
-			'src' => rela_estate_asset( 'fonts/Didot-w01-Italic.ttf', true ),
-			'format' => 'truetype',
-			'weight' => 'normal',
-			'style' => 'serif',
-			'display' => 'swap',
-		]
-	];
-}

@@ -299,3 +299,358 @@ class Walker_Nav_Menu_Custom extends Walker_Nav_Menu {
       $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
   }
 }
+
+/**
+ * Handle newsletter signup form submissions
+ */
+function rela_estate_handle_newsletter_signup() {
+    // Verify nonce
+    if (!isset($_POST['newsletter_nonce']) || !wp_verify_nonce($_POST['newsletter_nonce'], 'newsletter_signup_nonce')) {
+        wp_die('Security check failed. Please try again.');
+    }
+    
+    // Get email from form
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    
+    if (!is_email($email)) {
+        wp_die('Please provide a valid email address.');
+    }
+    
+    // Log submission for debugging
+    error_log('Newsletter signup submitted with email: ' . $email);
+    
+    // Process the email - this is where you'd integrate with your newsletter provider
+    // For now, just save to database or send an admin email
+    $admin_email = get_option('admin_email');
+    $site_name = get_bloginfo('name');
+    $subject = sprintf('[%s] New Newsletter Signup', $site_name);
+    $message = sprintf('A new user has signed up for your newsletter: %s', $email);
+    
+    // Send notification to admin
+    wp_mail($admin_email, $subject, $message);
+    
+    // Store in database
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'newsletter_subscribers';
+    
+    // Check if table exists, create if it doesn't
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        // Table doesn't exist, create it now
+        rela_estate_create_newsletter_table();
+        error_log('Newsletter table created on demand');
+    }
+    
+    // Now insert the subscriber
+    $result = $wpdb->insert(
+        $table_name,
+        array(
+            'email' => $email,
+            'date_added' => current_time('mysql'),
+            'status' => 'subscribed'
+        )
+    );
+    
+    // Log the result
+    if ($result === false) {
+        error_log('Failed to insert subscriber: ' . $wpdb->last_error);
+    } else {
+        error_log('Subscriber inserted successfully with ID: ' . $wpdb->insert_id);
+    }
+    
+    // Redirect user back with success message
+    wp_safe_redirect(add_query_arg('newsletter', 'success', wp_get_referer()));
+    exit;
+}
+add_action('admin_post_newsletter_signup', 'rela_estate_handle_newsletter_signup');
+add_action('admin_post_nopriv_newsletter_signup', 'rela_estate_handle_newsletter_signup'); // For non-logged in users
+
+/**
+ * Display newsletter signup success message
+ */
+function rela_estate_newsletter_success_message() {
+    if (isset($_GET['newsletter']) && $_GET['newsletter'] === 'success') {
+        ?>
+        <div class="newsletter-success-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed top-5 right-5 max-w-md shadow-md z-50" role="alert">
+            <strong class="font-bold">Thank you!</strong>
+            <span class="block sm:inline"> You've been successfully subscribed to our newsletter.</span>
+            <button class="absolute top-0 right-0 mt-2 mr-2" onclick="this.parentElement.remove()">
+                <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
+            </button>
+        </div>
+        <script>
+            // Auto-hide the message after 5 seconds
+            setTimeout(function() {
+                const message = document.querySelector('.newsletter-success-message');
+                if (message) {
+                    message.remove();
+                }
+            }, 5000);
+        </script>
+        <?php
+    }
+}
+add_action('wp_footer', 'rela_estate_newsletter_success_message');
+
+/**
+ * Create newsletter subscribers table
+ */
+function rela_estate_create_newsletter_table() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'newsletter_subscribers';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    // Check if the table already exists
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        $sql = "CREATE TABLE $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            email varchar(100) NOT NULL,
+            date_added datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            status varchar(20) DEFAULT 'subscribed' NOT NULL,
+            PRIMARY KEY  (id),
+            UNIQUE KEY email (email)
+        ) $charset_collate;";
+
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        dbDelta($sql);
+    }
+}
+
+// Run the function when theme is activated
+add_action('after_switch_theme', 'rela_estate_create_newsletter_table');
+
+/**
+ * Add Newsletter Subscribers admin page
+ */
+function rela_estate_add_newsletter_admin_menu() {
+    add_submenu_page(
+        'tools.php',                   // Parent slug
+        'Newsletter Subscribers',      // Page title
+        'Newsletter Subscribers',      // Menu title
+        'manage_options',              // Capability
+        'newsletter-subscribers',      // Menu slug
+        'rela_estate_newsletter_admin_page' // Function to display the page
+    );
+}
+add_action('admin_menu', 'rela_estate_add_newsletter_admin_menu');
+
+/**
+ * Display Newsletter Subscribers admin page
+ */
+function rela_estate_newsletter_admin_page() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'newsletter_subscribers';
+    
+    // Handle export action
+    if (isset($_GET['action']) && $_GET['action'] === 'export' && current_user_can('manage_options')) {
+        $subscribers = $wpdb->get_results("SELECT email, date_added, status FROM $table_name ORDER BY date_added DESC");
+        
+        // Set headers for CSV download
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="newsletter-subscribers-' . date('Y-m-d') . '.csv"');
+        
+        $output = fopen('php://output', 'w');
+        
+        // Add CSV headers
+        fputcsv($output, array('Email', 'Date Added', 'Status'));
+        
+        // Add subscriber data
+        foreach ($subscribers as $subscriber) {
+            fputcsv($output, array($subscriber->email, $subscriber->date_added, $subscriber->status));
+        }
+        
+        fclose($output);
+        exit;
+    }
+    
+    // Get subscribers with pagination
+    $page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1;
+    $per_page = 20;
+    $offset = ($page - 1) * $per_page;
+    
+    $total_items = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+    $subscribers = $wpdb->get_results($wpdb->prepare(
+        "SELECT * FROM $table_name ORDER BY date_added DESC LIMIT %d OFFSET %d",
+        $per_page, $offset
+    ));
+    
+    $total_pages = ceil($total_items / $per_page);
+    ?>
+    <div class="wrap">
+        <h1 class="wp-heading-inline">Newsletter Subscribers</h1>
+        <a href="<?php echo admin_url('tools.php?page=newsletter-subscribers&action=export'); ?>" class="page-title-action">Export CSV</a>
+        
+        <hr class="wp-header-end">
+        
+        <div class="tablenav top">
+            <div class="tablenav-pages">
+                <span class="displaying-num"><?php echo $total_items; ?> items</span>
+                <span class="pagination-links">
+                    <?php if ($page > 1) : ?>
+                        <a class="first-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=1'); ?>">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                        <a class="prev-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . ($page - 1)); ?>">
+                            <span aria-hidden="true">‹</span>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <span class="paging-input">
+                        <?php echo $page; ?> of <span class="total-pages"><?php echo $total_pages; ?></span>
+                    </span>
+                    
+                    <?php if ($page < $total_pages) : ?>
+                        <a class="next-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . ($page + 1)); ?>">
+                            <span aria-hidden="true">›</span>
+                        </a>
+                        <a class="last-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . $total_pages); ?>">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    <?php endif; ?>
+                </span>
+            </div>
+            <br class="clear">
+        </div>
+        
+        <table class="wp-list-table widefat fixed striped">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($subscribers)) : ?>
+                    <tr>
+                        <td colspan="3">No subscribers found.</td>
+                    </tr>
+                <?php else : ?>
+                    <?php foreach ($subscribers as $subscriber) : ?>
+                        <tr>
+                            <td><?php echo esc_html($subscriber->email); ?></td>
+                            <td><?php echo esc_html($subscriber->status); ?></td>
+                            <td><?php echo esc_html(date('F j, Y, g:i a', strtotime($subscriber->date_added))); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Date Added</th>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <div class="tablenav bottom">
+            <div class="tablenav-pages">
+                <span class="displaying-num"><?php echo $total_items; ?> items</span>
+                <span class="pagination-links">
+                    <?php if ($page > 1) : ?>
+                        <a class="first-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=1'); ?>">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                        <a class="prev-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . ($page - 1)); ?>">
+                            <span aria-hidden="true">‹</span>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <span class="paging-input">
+                        <?php echo $page; ?> of <span class="total-pages"><?php echo $total_pages; ?></span>
+                    </span>
+                    
+                    <?php if ($page < $total_pages) : ?>
+                        <a class="next-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . ($page + 1)); ?>">
+                            <span aria-hidden="true">›</span>
+                        </a>
+                        <a class="last-page button" href="<?php echo admin_url('tools.php?page=newsletter-subscribers&paged=' . $total_pages); ?>">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    <?php endif; ?>
+                </span>
+            </div>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * Handle AJAX newsletter signup
+ */
+function rela_estate_handle_newsletter_ajax_signup() {
+    // Check ajax nonce for security
+    check_ajax_referer('newsletter_signup_nonce', 'newsletter_nonce', false);
+    
+    // Get email from form
+    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
+    
+    // Validate email
+    if (!is_email($email)) {
+        wp_send_json_error([
+            'message' => 'Please provide a valid email address.'
+        ]);
+        exit;
+    }
+    
+    // Log submission for debugging
+    error_log('Newsletter signup submitted via AJAX with email: ' . $email);
+    
+    // Process the email - send admin notification
+    $admin_email = get_option('admin_email');
+    $site_name = get_bloginfo('name');
+    $subject = sprintf('[%s] New Newsletter Signup', $site_name);
+    $message = sprintf('A new user has signed up for your newsletter: %s', $email);
+    
+    wp_mail($admin_email, $subject, $message);
+    
+    // Store in database
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'newsletter_subscribers';
+    
+    // Check if table exists, create if it doesn't
+    if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+        rela_estate_create_newsletter_table();
+        error_log('Newsletter table created on demand via AJAX');
+    }
+    
+    // Check if email already exists
+    $existing = $wpdb->get_var($wpdb->prepare(
+        "SELECT id FROM $table_name WHERE email = %s",
+        $email
+    ));
+    
+    if ($existing) {
+        wp_send_json_success([
+            'message' => 'You are already subscribed to our newsletter.'
+        ]);
+        exit;
+    }
+    
+    // Insert the subscriber
+    $result = $wpdb->insert(
+        $table_name,
+        array(
+            'email' => $email,
+            'date_added' => current_time('mysql'),
+            'status' => 'subscribed'
+        )
+    );
+    
+    // Log the result
+    if ($result === false) {
+        error_log('Failed to insert subscriber via AJAX: ' . $wpdb->last_error);
+        wp_send_json_error([
+            'message' => 'Failed to subscribe. Please try again later.'
+        ]);
+    } else {
+        error_log('Subscriber inserted successfully via AJAX with ID: ' . $wpdb->insert_id);
+        wp_send_json_success([
+            'message' => 'You\'ve been successfully subscribed to our newsletter.'
+        ]);
+    }
+    
+    exit;
+}
+add_action('wp_ajax_newsletter_ajax_signup', 'rela_estate_handle_newsletter_ajax_signup');
+add_action('wp_ajax_nopriv_newsletter_ajax_signup', 'rela_estate_handle_newsletter_ajax_signup');

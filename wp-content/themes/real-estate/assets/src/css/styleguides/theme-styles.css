@@ -1,7 +1,7 @@
 /* Theme style */
 
 body {
-    @apply bg-[--color-grey-08];
+    @apply bg-[#191919];
 }
 
     .input-dark {
@@ -30,11 +30,90 @@ body {
     }
 }
 
+#primary-menu-desktop {
+    li a {
+        @apply py-3 px-5
+    }
+    
+    li a:hover, li.current_page_item a {
+        @apply py-3 px-5 bg-[--color-grey-08] rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-800;
+    }
+}
+
+.hero-desc p {
+    @apply lg:text-base text-sm text-[--color-grey-60];
+}
+
+.cta-content p {
+    @apply lg:text-base text-sm text-[--color-grey-60];
+}
+
+.mobile-bg {
+    background-image: var(--mobile-bg);
+}
+
+@media (min-width: 1024px) {
+    .desktop-bg {
+        background-image: var(--desktop-bg);
+        background-size: 100% 100%, contain;
+    }
+}
 
 .wp-block-columns {
     @apply lg:py-20 py-8 px-4;
     background-color: var(--bg-overlay-color);
     margin-bottom: 0;
+}
+
+.footer-newsletter input[type="email"] {
+    @apply placeholder-grey-300 
+    text-grey-100 
+    bg-grey-900
+    mb-0;
+    border: none;
+    outline: none;
+    all: unset;
+
+    input[type="email"]:active {
+        @apply placeholder-grey-300 
+        text-grey-100 
+        bg-grey-900;
+        outline: none;
+        all: unset;
+    }
+
+    input[type="email"]:focus {
+        @apply placeholder-grey-300 
+        text-grey-100 
+        bg-grey-900;
+        outline: none;
+        all: unset;
+    }
+    input[type="email"]:focus-visible {
+        @apply placeholder-grey-300 
+        text-grey-100 
+        bg-grey-900;
+        outline: none;
+        all: unset;
+    }
+
+}
+
+/* Footer Widget Styles */
+.footer-menu .widget {
+    margin-bottom: 1.5rem;
+}
+
+.footer-menu .widget_nav_menu ul {
+    @apply flex flex-col gap-4;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 1.5rem;
+}
+
+.footer-menu .widget_nav_menu ul li a {
+    @apply text-white text-base font-primary-medium leading-normal;
 }
 
 .wp-block-columns .wp-block-columns {
@@ -57,8 +136,4 @@ body {
 }
 .has-text-align-justify {
     text-align: justify;
-}
-
-footer {
-    background-color: var(--bg-overlay-color); /* Gunakan variabel CSS di sini */
 }

@@ -29,7 +29,6 @@ module.exports = {
         container: {
             center: true,
             padding: {
-                DEFAULT: '1rem',
                 sm: '2rem',
                 md: '2rem',
                 lg: '0rem'
@@ -57,13 +56,14 @@ module.exports = {
             
         },
         screens: {
+            '3xs': '345px',
             '2xs': '393px',
             'xs': '480px',
             'sm': '600px',
             'md': '768px',
             'lg': tailpress.theme('settings.layout.contentSize', theme),
             'xl': tailpress.theme('settings.layout.wideSize', theme),
-            '2xl': '1680px'
+            '2xl': '1440px'
         }
     },
     plugins: [

@@ -68,6 +68,7 @@ $gns_includes = [
     '/enqueue.php',
     '/extras.php',
 	'/hooks.php',
+	'/widget.php',
 
     // Theme Setup
     '/setups/index.php',

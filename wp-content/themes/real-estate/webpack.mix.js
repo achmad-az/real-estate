@@ -31,6 +31,7 @@ if (!mix.inProduction()) {
 
 // Compile assets
 mix.js(`${assetSrc}/js/app.js`, `${assetDist}/js`)
+   //.js(`${assetSrc}/js/newsletter.js`, `${assetDist}/js`) // Menambahkan newsletter.js ke build
    .postCss(`${assetSrc}/css/app.css`, `${assetDist}/css`, postcssPlugins)
    .postCss(`${assetSrc}/css/editor-style.css`, `${assetDist}/css`, postcssPlugins)
    .copy(`${assetSrc}/fonts`, `${assetDist}/fonts`) 

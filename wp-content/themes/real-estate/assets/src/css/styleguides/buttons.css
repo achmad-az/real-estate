@@ -2,89 +2,10 @@
 
 @layer components {
     
-    .btn-prm {
-        @apply bg-[--theme-bg-color] text-black py-2 px-5 shadow-md text-center;
-        position: relative;
-        transition: transform 0.3s;
-        min-width: var(--btn-min-w);
-        height: var(--btn-height);
+    .btn-primary {
+        @apply py-3 px-5 bg-[--color-grey-08] rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-800;
     }
-
-    .btn-prm:hover {
-        @apply hover:bg-neutral-200 shadow-lg;
-    }
-
-    .btn-prm:active {
-        @apply focus:ring-2 focus:ring-[--theme-bg-color];
-    }
-
-    .btn-prm:focus {
-        @apply focus:ring-2 focus:ring-[--theme-bg-color];
-    }
-
-    .btn-prm:before {
-        content: "";
-        background: no-repeat 100% 0;
-        background-image: url("../images/btn-shadow.png");
-        bottom: -26px;
-        content: "";
-        height: 26px;
-        position: absolute;
-        right: -26px;
-        width: 165px;
-        opacity: 1;
-        visibility: visible;
-        transform: rotateY(0deg);
-        -webkit-transform: rotateY(0deg);
-        -moz-transform: rotateY(0deg);
-        -ms-transform: rotateY(0deg);
-        -o-transform: rotateY(0deg);
-}
-
-    .btn-prm:hover:before {
-        right: -10px;
-        transform: rotateY(180deg);
-        -webkit-transform: rotateY(180deg);
-        -moz-transform: rotateY(180deg);
-        -ms-transform: rotateY(180deg);
-        -o-transform: rotateY(180deg);
-}
-
-    /* __TODO: change native css style to @apply syntax */
-    .btn-sec {
-        background-color: transparent;
-        color: var(--kelly_green);
-        padding: 12px 52px;
-        font-family: "Montagu Slab", serif;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 18.2px;
-        text-transform: uppercase;
-        border: 1px solid transparent;
-        transition:
-            background-color 0.3s,
-            box-shadow 0.3s,
-            border 0.3s;
-    }
-
-    .btn-sec:hover {
-        background-color: transparent;
-        color: var(--sacramento);
-        border: 1px solid var(--chiffon);
-    }
-
-    .btn-sec:active {
-        background-color: #284616;
-        color: var(--sacramento);
-        border: 1px solid var(--chiffon);
-    }
-
-    .btn-sec:focus {
-        background-color: transparent;
-        color: var(--sacramento);
-        border: 1px solid var(--chiffon);
-        box-shadow: 0 0 0 4px #72bf4433;
-    }
+    
 }
 
 .wp-block-cover .wp-block-buttons {
