@@ -52,7 +52,7 @@ if ( ! class_exists( 'ESTATEINctablock' ) ) {
         }
         public function metabox() {
             $nonce = wp_create_nonce('rela_estate_ajax_nonce');
-            Block::make( __( 'Real Estate CTA Title Block' ) )
+            Block::make( __( 'Real Estate CTA Block' ) )
             ->add_fields( array(
                 // Content Section
                 Field::make('html', 'cta_heading', __('Call to Action Section'))

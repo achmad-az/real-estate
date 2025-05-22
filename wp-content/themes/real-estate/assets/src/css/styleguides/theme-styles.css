@@ -1,7 +1,7 @@
 /* Theme style */
 
 body {
-    @apply bg-[#191919];
+    @apply bg-[--color-grey-08];
 }
 
     .input-dark {
@@ -98,6 +98,18 @@ body {
     }
 
 }
+
+/* Our Value Block */
+
+.value-desc p, .value-items p {
+    @apply !text-[#999999] text-base font-primary-medium !leading-normal;
+}
+
+.our-team p {
+    @apply !text-[#999999] text-base font-primary-medium !leading-normal;
+}
+
+
 
 /* Footer Widget Styles */
 .footer-menu .widget {

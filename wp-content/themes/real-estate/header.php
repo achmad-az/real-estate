@@ -29,7 +29,7 @@
         <div id="page" class="">
             <?php do_action('rela_estate_header'); ?>
                     <header x-data="{ open: false }" @keydown.window.escape="open = false"
-                        class=" inset-x-0 top-0 z-50">
+                        class=" inset-x-0 top-0 z-50 bg-[#191919]">
                         <!-- Mobile menu, show/hide based on menu open state. -->
                         <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full" class="h-screen" role="dialog" aria-modal="true">
                             <!-- Background backdrop, show/hide based on slide-over state. -->
