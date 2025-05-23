@@ -61,19 +61,43 @@ if ( ! class_exists( 'ESTATEINthemeoption' ) ) {
                 ->add_tab(__('<span class="dashicons dashicons-table-row-before"></span> General', 'real-estate'), [
                     Field::make('image', 'main_logo_image', __('Main Logo Image', 'real-estate'))
                         ->set_help_text(__('Upload an image for the hero logo.', 'real-estate')),
-                ])
-                ->add_tab(__('<span class="dashicons dashicons-table-row-before"></span> Header', 'real-estate'), [
                     Field::make('text', 'banner_text', __('Banner Text', 'real-estate'))
                         ->set_help_text(__('Enter the text to display in the banner.', 'real-estate')),
                     Field::make('select', 'banner_link', __('Banner Link', 'real-estate'))
                         ->add_options('get_pages_options')
                         ->set_help_text(__('Select a page for the banner button to link to.', 'real-estate')),
+                ])
+                ->add_tab(__('<span class="dashicons dashicons-table-row-before"></span> Header', 'real-estate'), [
+                    
                     Field::make('image', 'menu_logo_image', __('Menu Logo Image', 'real-estate'))
                         ->set_help_text(__('Upload an image for the menu logo.', 'real-estate')),
                     Field::make('text', 'header_button_text', __('Banner Text', 'real-estate'))
                         ->set_help_text(__('Enter the text to display in the banner.', 'real-estate')),
                     Field::make('select', 'header_button_link', __('Banner Link', 'real-estate'))
                         ->add_options('get_pages_options')
+                ])
+                ->add_tab(__('<span class="dashicons dashicons-location"></span> Office', 'real-estate'), [
+                    Field::make('text', 'office_heading', __('Office Heading')),
+                    Field::make('textarea', 'office_content', __('Office Content')),
+                    Field::make('complex', 'office_locations', __('Office Locations', 'real-estate'))
+                        ->set_layout('tabbed-vertical')
+                        ->add_fields([
+                            Field::make('text', 'office_title', __('Office Title', 'real-estate'))
+                                ->set_help_text(__('Enter the title of the office.', 'real-estate')),
+                            Field::make('text', 'office_address', __('Office Address', 'real-estate'))
+                                ->set_help_text(__('Enter the address of the office.', 'real-estate')),
+                            Field::make('textarea', 'office_desc', __('Office Description', 'real-estate'))
+                                ->set_help_text(__('Enter the description of the office.', 'real-estate')),
+                            Field::make('text', 'office_email', __('Office Email', 'real-estate'))
+                                ->set_help_text(__('Enter the email address of the office.', 'real-estate')),
+                            Field::make('text', 'office_phone', __('Office Phone', 'real-estate'))
+                                ->set_help_text(__('Enter the phone number of the office.', 'real-estate')),
+                            Field::make('text', 'office_location', __('Office Location', 'real-estate'))
+                                ->set_help_text(__('Enter the location of the office.', 'real-estate')),
+                            Field::make('text', 'office_link_location', __('Office Link Location', 'real-estate'))
+                                ->set_help_text(__('Enter the link location of the office.', 'real-estate')),
+                        ])
+                        ->set_header_template('<%- office_address %>')
                 ])
                 ->add_tab(__('<span class="dashicons dashicons-table-row-before"></span> Footer', 'real-estate'), [
                     Field::make('text', 'copyright_text', __('Copyright Text', 'real-estate'))

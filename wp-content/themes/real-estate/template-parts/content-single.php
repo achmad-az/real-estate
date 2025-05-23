@@ -5,7 +5,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
-    <div class="container bg-[var(--bg-overlay-color)]">
+    <div class="container">
         <div class="max-w-4xl mx-auto">
             <header class="entry-header">
                 <?php if (has_post_thumbnail()): ?>
@@ -70,9 +70,11 @@
     </div>
 </article>
 
-<?php
-// If comments are open or there's at least one comment, load up the comment template.
-if (comments_open() || get_comments_number()):
-    comments_template();
-endif;
-?>
+<div class="container max-w-4xl">
+    <?php
+    // If comments are open or there's at least one comment, load up the comment template.
+    if (comments_open() || get_comments_number()):
+        comments_template();
+    endif;
+    ?>
+</div>

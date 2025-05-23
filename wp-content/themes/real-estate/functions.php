@@ -69,6 +69,8 @@ $gns_includes = [
     '/extras.php',
 	'/hooks.php',
 	'/widget.php',
+	'/office.php',
+	'/contact-form.php',
 
     // Theme Setup
     '/setups/index.php',
