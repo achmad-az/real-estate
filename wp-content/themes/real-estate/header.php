@@ -34,7 +34,7 @@
                         <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform translate-x-full" x-transition:enter-end="opacity-100 transform translate-x-0" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform translate-x-0" x-transition:leave-end="opacity-0 transform translate-x-full" class="h-screen" role="dialog" aria-modal="true">
                             <!-- Background backdrop, show/hide based on slide-over state. -->
                             <div class="backdrop-blur-sm fixed inset-0 z-50"></div>
-                            <div class="fixed right-0 shadow-2xl inset-y-0 z-50 w-full overflow-y-auto bg-[#ffffff] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
+                            <div class="fixed right-0 shadow-2xl inset-y-0 z-50 w-full overflow-y-auto bg-[#191919] px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white/10">
                                 <div class="flex items-center justify-between">
                                     <?php if (has_custom_logo()) : ?>
                                         <?php the_custom_logo(); ?>
@@ -62,7 +62,7 @@
                                                 'menu_id'        => 'primary-menu-mobile',
                                                 'container'      => false,
                                                 'menu_class'     => 'space-y-2 py-6',
-                                                'link_before'    => '<span class="block text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">',
+                                                'link_before'    => '<span class="block text-base font-semibold leading-7 text-white hover:bg-gray-50">',
                                                 'link_after'     => '</span>',
                                                 'walker'         => new Walker_Nav_Menu_Custom(),
                                             ));
@@ -70,8 +70,16 @@
                                     </div>
                                 </div>
                                 <div class="py-6 border-t border-gray-500/10">
-                                    <a href="#"
-                                        class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                                    <?php if ($header_button_text): ?>
+                                        <?php
+                                            $button_url = $header_button_link ? get_permalink($header_button_link) : '#';
+                                        ?>
+                                        <a href="<?php echo esc_url($button_url); ?>" class="text-sm font-semibold leading-6 py-3 px-5 bg-[--color-grey-08] rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-800">
+                                            <?php echo esc_html($header_button_text); ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <a href="#" class="text-sm font-semibold leading-6 py-3 px-5 bg-[--color-grey-08] rounded-lg outline outline-1 outline-offset-[-1px] outline-neutral-800">Contact Us</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
