@@ -1,84 +1,200 @@
-# Palm-test
+# Estatein - Real Estate WordPress Theme
 
-In this repository i put the whole wp-content directory & database sql file to make easier to install this theme.
+**Version:** 1.0  
+**Author:** Achmad Az  
+**License:** GPL2
 
-1. just install fresh wordpress in your local
-2. pull this repo
-3. replace your wp-content directory
-4. import the database
-5. by this method you will easier and faster to install this theme and plugin
+## Overview
 
-# Contact Submission Plugin
+Estatein is a modern, feature-rich WordPress theme designed specifically for real estate agencies and property management companies. Built with best practices in mind, this theme offers a seamless user experience for both administrators and visitors, with a focus on clean design, responsiveness, and performance.
+you can check the design here: https://www.figma.com/community/file/1314076616839640516
 
-Version: 1.0
-Author: Achmad Az
-License: GPL2
+**DEMO:** https://bcodes.top/estatein
 
-A simple WordPress plugin to handle contact submissions using a custom post type. This plugin integrates with Contact Form 7 to save form submissions as custom posts in the WordPress admin panel.
+## Features
 
-# Features
+- **Modern Design** - Contemporary design with dark mode aesthetics and professional color schemes 
+- **Responsive Layout** - Fully responsive across all devices (mobile, tablet, desktop)
+- **Custom Blocks** - Gutenberg-compatible custom blocks built with Carbon Fields
+  - Hero Services Block
+  - Property Value Block
+  - Contact Form Block
+  - And more...
+- **Dynamic Forms** - Ajax-powered contact form with client and server-side validation
+- **Shortcodes** - Easy-to-use shortcodes for displaying office locations and other content
+- **Developer-Friendly** - Well-organized code structure for easy customization
+- **Tailwind CSS** - Modern utility-first CSS framework for styling
+- **Performance Optimized** - Optimized for speed and performance
 
-	•	Automatically save Contact Form 7 submissions as “Contact Submission” custom posts.
-	•	Supports fields: Name, Email, Phone, Services, and Message.
-	•	Allows manual addition and editing of submissions in the WordPress admin panel.
-	•	Simple, user-friendly interface.
-# Requirements
+## Technology Stack
 
-	•	WordPress 5.0 or higher
-	•	PHP 7.4 or higher
-	•	Contact Form 7 plugin (must be installed and activated)
- # Installation
+- **WordPress** (5.0 or higher)
+- **PHP** (7.4 or higher)
+- **Carbon Fields** (bundled with theme) - For custom fields and blocks
+- **Tailwind CSS** - For styling
+- **jQuery** - Minimally used for enhanced functionality
+- **AJAX** - For form submissions without page refresh
 
-	1. Install Contact Form 7:
-	   •    Go to Plugins > Add New in the WordPress admin panel.
-	   •	Search for “Contact Form 7” and install the plugin.
-	   •	Activate the Contact Form 7 plugin.
-	2. Install the Contact Submission Plugin:
-	   •	Download the contact-submission.zip file.
-	   •	Go to Plugins > Add New > Upload Plugin in the WordPress admin panel.
-	   •	Choose the contact-submission.zip file and click Install Now.
-	   •	Activate the Contact Submission plugin.
-# How to Use
+## Installation
 
-1. Configure Contact Form 7
+1. **Install WordPress**:
+   - Set up a fresh WordPress installation
 
-	 • Create a form in Contact Form 7 with the following fields (or customize as needed):
-		Your Name: [text* your-name]
-		Your Email: [email* your-email]
-		Your Phone: [tel your-phone]
-		Services: [select* your-services "Consultation" "Installation" "Maintenance" "Support"]
-		Your Message: [textarea your-message]
-		[submit "Send"]
-	 • Note: The field names (e.g., your-name, your-email) should match the ones configured in the plugin.
-2. Submit a Form
+2. **Install the Theme**:
+   - Upload the `real-estate` theme folder to your `wp-content/themes` directory
+   - Activate the theme from Appearance > Themes in the WordPress admin
 
-	•	Embed the form using the shortcode provided by Contact Form 7, e.g., [contact-form-7 id="123" title="Contact Form"].
-	•	When a user submits the form, their data will be saved as a new “Contact Submission” post.
+3. **Required Plugins**:
+   - Carbon Fields is bundled with the theme and will be automatically loaded
+   - Download link (if needed): [Carbon Fields on GitHub](https://github.com/htmlburger/carbon-fields)
 
-3. View Submissions
+4. **Recommended Plugins**:
+   - Yoast SEO (for SEO optimization)
 
-	•	Go to Contact Submissions in the WordPress admin menu to view all saved submissions.
-	•	Each submission includes the following fields:
-	•	Name
-	•	Email
-	•	Phone
-	•	Services
-	•	Message
+## Theme Structure
 
-4. Manually Add or Edit Submissions
+```
+real-estate/
+│
+├── assets/
+│   ├── src/
+│   │   ├── css/
+│   │   ├── images/
+│   │   └── js/
+│   └── dist/ (compiled assets)
+│
+├── inc/
+│   ├── constants.php
+│   ├── enqueue.php
+│   ├── extras.php
+│   ├── hooks.php
+│   ├── widget.php
+│   ├── features/
+│   ├── metabox/
+│   └── setups/
+│
+├── vendor/ (Carbon Fields and dependencies)
+│
+├── template-parts/
+│
+└── functions.php
+```
 
-	•	Add new submissions by clicking Add New under Contact Submissions.
-	•	Edit existing submissions by clicking Edit on any submission.
-# Notes
+## Custom Blocks & Fields
 
-	•	This plugin only processes submissions from Contact Form 7 forms.
-	•	If Contact Form 7 is not installed or activated, the plugin will not function properly.
-	•	Manual additions and edits are independent of Contact Form 7 and can be managed directly from the WordPress admin panel.
- # Uninstallation
+The theme uses Carbon Fields to create custom blocks for Gutenberg editor. These blocks are defined in the `/inc/metabox/` directory.
 
-	•	Deactivate the plugin in Plugins > Installed Plugins.
-	•	Optionally, delete the plugin.
-	•	Note: All saved “Contact Submission” posts will be removed upon uninstallation.
- # Support
+### Hero Services Block
 
-	For support or issues, please contact me at achmad.azman@gmail.com.
+```php
+// Usage in Gutenberg editor
+// Select the "Real Estate Hero Services Block" from the blocks list
+```
+
+Features:
+- Custom heading and content area
+- Up to 4 services with custom icons
+- Link selection for each service
+- Responsive grid layout
+
+### Property Value Block
+
+```php
+// Usage in Gutenberg editor
+// Select the "Real Estate Property Value Block" from the blocks list  
+```
+
+Features:
+- Custom heading and content area
+- Value propositions with icons
+- CTA section with custom link
+
+### Contact Form Block
+
+```php
+// Usage in Gutenberg editor
+// Select the "Real Estate Contact Form Block" from the blocks list
+```
+
+Features:
+- AJAX-powered form submission
+- Client and server-side validation
+- Custom form fields (name, email, phone, message, etc.)
+- Styled success/error notifications
+
+## Shortcodes
+
+### Office Locations
+
+```php
+// Usage in any post or page
+[office_locations]
+```
+
+Displays office locations from Carbon Fields theme options with:
+- 2-column responsive grid layout
+- Contact information (address, phone, email)
+- Map location links
+- Custom styling
+
+## Theme Options
+
+Navigate to Carbon Fields > Theme Options in the WordPress admin to configure:
+
+1. **Global Settings**
+   - Logo uploads
+   - Color scheme options
+   - Typography settings
+
+2. **Contact Information**
+   - Company details
+   - Social media links
+   - Office locations
+
+3. **Homepage Settings**
+   - Featured properties
+   - Testimonials
+   - Call-to-action content
+
+## Developer Notes
+
+### Adding Custom Blocks
+
+1. Create a new PHP file in `/inc/metabox/` directory
+2. Define the block structure using Carbon Fields syntax
+3. Register the block in `/inc/metabox/index.php`
+
+Example:
+```php
+Block::make( __( 'Custom Block Name' ) )
+    ->add_fields( array(
+        Field::make('text', 'heading', __('Block Heading')),
+        Field::make('rich_text', 'content', __('Block Content')),
+    ) )
+    ->set_render_callback( function ( $fields, $attributes, $inner_blocks ) {
+        // HTML structure for the block
+    } );
+```
+
+### Working with Shortcodes
+
+Custom shortcodes are registered in `functions.php`. To create a new shortcode:
+
+1. Define the shortcode callback function
+2. Register it using `add_shortcode()`
+3. Use output buffering for clean HTML generation
+
+## Custom CSS
+
+The theme uses Tailwind CSS utility classes for styling. Custom CSS can be added:
+
+1. Via WordPress Customizer
+2. By editing Tailwind configuration
+
+## Support
+
+For support or issues, please contact me at achmad.azman@gmail.com.
+
+## License
+
+This theme is licensed under GPL2. See the LICENSE file for more details.
