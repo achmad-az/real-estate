@@ -134,32 +134,32 @@ if ( ! class_exists( 'ESTATEINcontactformblock' ) ) {
                             <?php endif; ?>
                         </div>
                         
-                        <div class="w-full self-stretch p-[100px] rounded-xl outline outline-1 outline-offset-[-1px] outline-[#141414] inline-flex flex-col justify-center items-center gap-[50px]">
+                        <div class="w-full self-stretch py-10 lg:p-[100px] rounded-xl outline outline-1 outline-offset-[-1px] outline-[#141414] inline-flex flex-col justify-center items-center gap-[50px]">
                             <form id="contact-form" method="post" class="self-stretch flex flex-col justify-start items-start gap-[50px] w-full">
                                 
                                 <div class="self-stretch flex flex-col justify-start items-start gap-[50px]">
                                     <div class="self-stretch flex flex-col md:flex-row justify-start items-start gap-[50px]">
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 w-full">
-                                            <label for="first_name" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">First Name</label>
-                                            <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight !w-full">
+                                            <label for="first_name" class="self-stretch justify-start text-white text-base lg:text-xl font-primary-semibold leading-[30px]">First Name</label>
+                                            <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight !w-full">
                                         </div>
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 w-full">
                                             <label for="last_name" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">Last Name</label>
-                                            <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight !w-full">
+                                            <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight !w-full">
                                         </div>
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 w-full">
                                             <label for="email" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">Email</label>
-                                            <input type="email" id="email" name="email" placeholder="Enter your Email" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight !w-full">
+                                            <input type="email" id="email" name="email" placeholder="Enter your Email" required class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight !w-full">
                                         </div>
                                     </div>
                                     <div class="self-stretch flex flex-col md:flex-row justify-start items-start gap-[50px]">
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 w-full">
                                             <label for="phone" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">Phone</label>
-                                            <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight !w-full">
+                                            <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight !w-full">
                                         </div>
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 !w-full">
                                             <label for="inquiry_type" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">Inquiry Type</label>
-                                            <select id="inquiry_type" name="inquiry_type" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight appearance-none bg-[url('data:image/svg+xml;utf8,<svg width=\"25\" height=\"24\" viewBox=\"0 0 25 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20.1641 8.25L12.6641 15.75L5.16406 8.25\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>')] bg-no-repeat bg-right-4 bg-center-y w-full">
+                                            <select id="inquiry_type" name="inquiry_type" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight appearance-none bg-[url('data:image/svg+xml;utf8,<svg width=\"25\" height=\"24\" viewBox=\"0 0 25 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20.1641 8.25L12.6641 15.75L5.16406 8.25\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>')] bg-no-repeat bg-right-4 bg-center-y w-full">
                                                 <option value="" disabled selected>Select Inquiry Type</option>
                                                 <option value="general">General Inquiry</option>
                                                 <option value="property">Property Inquiry</option>
@@ -169,7 +169,7 @@ if ( ! class_exists( 'ESTATEINcontactformblock' ) ) {
                                         </div>
                                         <div class="flex-1 inline-flex flex-col justify-start items-start gap-4 !w-full">
                                             <label for="hear_about" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">How Did You Hear About Us?</label>
-                                            <select id="hear_about" name="hear_about" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight appearance-none bg-[url('data:image/svg+xml;utf8,<svg width=\"25\" height=\"24\" viewBox=\"0 0 25 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20.1641 8.25L12.6641 15.75L5.16406 8.25\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>')] bg-no-repeat bg-right-4 bg-center-y w-full">
+                                            <select id="hear_about" name="hear_about" class="self-stretch !px-5 !py-6 !bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight appearance-none bg-[url('data:image/svg+xml;utf8,<svg width=\"25\" height=\"24\" viewBox=\"0 0 25 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M20.1641 8.25L12.6641 15.75L5.16406 8.25\" stroke=\"white\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>')] bg-no-repeat bg-right-4 bg-center-y w-full">
                                                 <option value="" disabled selected>Select</option>
                                                 <option value="search">Search Engine</option>
                                                 <option value="social">Social Media</option>
@@ -181,21 +181,21 @@ if ( ! class_exists( 'ESTATEINcontactformblock' ) ) {
                                     </div>
                                     <div class="self-stretch flex flex-col justify-start items-start gap-4 !w-full">
                                         <label for="message" class="self-stretch justify-start text-white text-xl font-primary-semibold leading-[30px]">Message</label>
-                                        <textarea id="message" name="message" placeholder="Enter your Message here.." class="self-stretch h-[170px] px-5 py-6 bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-lg font-primary-medium leading-tight w-full"></textarea>
+                                        <textarea id="message" name="message" placeholder="Enter your Message here.." class="self-stretch h-[170px] px-5 py-6 bg-[#191919] rounded-lg outline outline-1 outline-offset-[-1px] outline-[#141414] text-white text-base lg:text-xl font-primary-medium leading-tight w-full"></textarea>
                                     </div>
                                 </div>
                                 <div class="self-stretch flex flex-col md:flex-row justify-center items-center gap-[50px]">
                                     <div class="flex-1 flex justify-start items-center gap-2.5">
                                         <input type="checkbox" id="terms" name="terms" required class="w-7 h-7 bg-[#191919] rounded border border-[#141414] cursor-pointer">
                                         <label for="terms" class="flex-1 justify-start cursor-pointer">
-                                            <span class="text-[#999999] text-lg font-primary-medium leading-[27px]">I agree with </span>
-                                            <a href="#" class="text-[#999999] text-lg font-primary-medium underline leading-[27px]">Terms of Use</a>
-                                            <span class="text-[#999999] text-lg font-primary-medium leading-[27px]"> and </span>
-                                            <a href="#" class="text-[#999999] text-lg font-primary-medium underline leading-[27px]">Privacy Policy</a>
+                                            <span class="text-[#999999] text-base lg:text-xl font-primary-medium leading-[27px]">I agree with </span>
+                                            <a href="#" class="text-[#999999] text-base lg:text-xl font-primary-medium underline leading-[27px]">Terms of Use</a>
+                                            <span class="text-[#999999] text-base lg:text-xl font-primary-medium leading-[27px]"> and </span>
+                                            <a href="#" class="text-[#999999] text-base lg:text-xl font-primary-medium underline leading-[27px]">Privacy Policy</a>
                                         </label>
                                     </div>
                                     <button type="submit" class="px-[46px] py-[18px] bg-[#6f3bf6] rounded-lg flex justify-center items-center gap-[67px] cursor-pointer hover:bg-[#5f32d0] transition-colors">
-                                        <span class="justify-start text-white text-lg font-primary-medium leading-normal">Send Your Message</span>
+                                        <span class="justify-start text-white text-base lg:text-xl font-primary-medium leading-normal">Send Your Message</span>
                                     </button>
                                 </div>
                                 <?php wp_nonce_field('contact_form_nonce', 'contact_form_nonce'); ?>
