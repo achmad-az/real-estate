@@ -128,7 +128,7 @@ if ( ! class_exists( 'ESTATEINimagetextblock' ) ) {
                         </div>
                         
                         <!-- Mobile: Text Second -->
-                        <div class="hero-text order-last lg:order-first lg:w-1/2 w-full flex flex-col items-start justify-center lg:mr-15 gap-y-5">
+                        <div class="hero-text order-last lg:order-first lg:w-1/2 w-full flex flex-col items-start justify-center lg:mr-10 gap-y-5">
                             <?php if (!empty($fields['heading'])) : ?>
                                 <?php if (!empty($fields['heading_icon'])) : ?>
                                 <div class="lg:ml-7">

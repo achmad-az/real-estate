@@ -45,11 +45,12 @@ if (mix.inProduction()) {
 }
 
 // BrowserSync
+
 mix.browserSync({
-    proxy: 'http://real-estate.test',
-    host: 'real-estate.test',
+    proxy: 'http://estatein.local',
+    host: 'estatein.local',
     open: 'external',
-    port: 8000,
+    port: 10048,
     files: [
         `${assetSrc}/css/**/*.css`,
         `${assetSrc}/js/**/*.js`
